@@ -48,8 +48,14 @@ public class AdminProductController {
     public String save(@RequestParam(required = false) Integer id,
                        @RequestParam String name,
                        @RequestParam long price,
+                       @RequestParam int quantity, // 👈 THÊM
+                       @RequestParam String description, // 👈 THÊM
                        @RequestParam MultipartFile image,
                        HttpServletRequest request) throws Exception {
+
+        if (quantity < 0) {
+            throw new RuntimeException("Số lượng không hợp lệ");
+        }
 
         Product product = (id != null)
                 ? productRepo.findById(id).orElse(new Product())
@@ -57,6 +63,8 @@ public class AdminProductController {
 
         product.setName(name);
         product.setPrice(price);
+        product.setQuantity(quantity); // 👈 SET
+        product.setDescription(description); // 👈 SET
 
         if (!image.isEmpty()) {
             String uploadDir = request.getServletContext().getRealPath("/images");

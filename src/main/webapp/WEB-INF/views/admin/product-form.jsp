@@ -114,6 +114,19 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Số lượng sản phẩm</label>
+                            <input type="number" name="quantity" class="form-control"
+                                   min="0"
+                                   value="<%= isEdit ? product.getQuantity() : 0 %>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả sản phẩm</label>
+                            <textarea name="description" class="form-control" rows="4"
+                                      placeholder="Nhập mô tả chi tiết sản phẩm..."><%= isEdit ? product.getDescription() : "" %></textarea>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Hình ảnh sản phẩm</label>
                             <input type="file" name="image" class="form-control" accept="image/*">
 

@@ -147,20 +147,43 @@
                         <fmt:message key="product.badge_hot"/>
                     </span>
 
-                    <img src="${pageContext.request.contextPath}/images/${p.image}"
-                         class="product-image"/>
+                    <!-- IMAGE -->
+                    <a href="${pageContext.request.contextPath}/product?id=${p.id}">
+                        <img src="${pageContext.request.contextPath}/images/${p.image}"
+                             class="product-image"/>
+                    </a>
 
                     <div class="mt-4 flex flex-col flex-grow">
-                        <h2 class="font-semibold mb-2">${p.name}</h2>
 
+                        <!-- NAME -->
+                        <h2 class="font-semibold mb-2">
+                            <a href="${pageContext.request.contextPath}/product?id=${p.id}">
+                                ${p.name}
+                            </a>
+                        </h2>
+
+                        <!-- PRICE -->
                         <div class="mb-4 font-bold text-lg text-purple-700">
                             <fmt:formatNumber value="${p.price}" type="number"/> ₫
                         </div>
 
-                        <a href="${pageContext.request.contextPath}/cart/add/${p.id}"
-                           class="btn-buy mt-auto">
-                            <fmt:message key="product.add_to_cart"/>
-                        </a>
+                        <c:choose>
+
+                            <c:when test="${p.quantity == 0}">
+                                <a href="${pageContext.request.contextPath}/product?id=${p.id}"
+                                   class="btn-buy mt-auto bg-gray-400">
+                                    <fmt:message key="detail.out_of_stock"/>
+                                </a>
+                            </c:when>
+
+                            <c:otherwise>
+                                <a href="${pageContext.request.contextPath}/cart/add/${p.id}"
+                                   class="btn-buy mt-auto">
+                                    <fmt:message key="product.add_to_cart"/>
+                                </a>
+                            </c:otherwise>
+
+                        </c:choose>
                     </div>
                 </div>
             </c:forEach>

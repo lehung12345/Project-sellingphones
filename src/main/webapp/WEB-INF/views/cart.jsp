@@ -100,9 +100,20 @@
 
                             <td class="text-center">
                                 <div class="qty-box">
+
                                     <a href="${pageContext.request.contextPath}/cart/decrease/${item.product.id}">−</a>
+
                                     <span>${item.quantity}</span>
-                                    <a href="${pageContext.request.contextPath}/cart/increase/${item.product.id}">+</a>
+
+                                    <c:choose>
+                                        <c:when test="${item.quantity >= item.product.quantity}">
+                                            <span style="opacity:0.3; cursor:not-allowed;">+</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="${pageContext.request.contextPath}/cart/increase/${item.product.id}">+</a>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </div>
                             </td>
 

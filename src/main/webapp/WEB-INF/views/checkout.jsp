@@ -162,6 +162,7 @@
 
                                 <button type="submit"
                                         class="btn btn-primary btn-confirm w-100 mt-4">
+                                        <c:if test="${outOfStock}">disabled</c:if>>
                                     <fmt:message key="checkout.confirm"/>
                                 </button>
                             </form>
@@ -200,6 +201,13 @@
                                             <div class="fw-bold">
                                                 ${item.product.name}
                                             </div>
+
+                                            <c:if test="${item.product.quantity < item.quantity}">
+                                                <div style="color:red; font-size:13px;">
+                                                    Không đủ hàng (còn ${item.product.quantity})
+                                                </div>
+                                            </c:if>
+
                                             <small class="text-muted">
                                                 <fmt:formatNumber
                                                         value="${item.product.price}"

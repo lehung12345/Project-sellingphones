@@ -50,8 +50,19 @@ public class CartController {
 
         Product product = productService.findById(id);
 
+        // HẾT HÀNG
+        if (product.getQuantity() <= 0) {
+            return "redirect:/products";
+        }
+
         for (CartItem item : cart) {
             if (item.getProduct().getId().equals(id)) {
+
+                // KHÔNG VƯỢT QUÁ STOCK
+                if (item.getQuantity() >= product.getQuantity()) {
+                    return "redirect:/cart";
+                }
+
                 item.setQuantity(item.getQuantity() + 1);
                 return "redirect:/cart";
             }
@@ -76,9 +87,15 @@ public class CartController {
     public String increaseQuantity(@PathVariable Integer id,
                                    @ModelAttribute("cart") List<CartItem> cart) {
 
+        Product product = productService.findById(id);
+
         for (CartItem item : cart) {
             if (item.getProduct().getId().equals(id)) {
-                item.setQuantity(item.getQuantity() + 1);
+
+                if (item.getQuantity() < product.getQuantity()) {
+                    item.setQuantity(item.getQuantity() + 1);
+                }
+
                 break;
             }
         }
@@ -90,14 +107,10 @@ public class CartController {
     public String decreaseQuantity(@PathVariable Integer id,
                                    @ModelAttribute("cart") List<CartItem> cart) {
 
-        Iterator<CartItem> iterator = cart.iterator();
-        while (iterator.hasNext()) {
-            CartItem item = iterator.next();
+        for (CartItem item : cart) {
             if (item.getProduct().getId().equals(id)) {
                 if (item.getQuantity() > 1) {
                     item.setQuantity(item.getQuantity() - 1);
-                } else {
-                    iterator.remove();
                 }
                 break;
             }

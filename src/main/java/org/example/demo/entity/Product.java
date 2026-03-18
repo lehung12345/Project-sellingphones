@@ -18,7 +18,31 @@ public class Product {
 
     private String image;
 
+    @Column(nullable = false)
+    private int quantity;
+
+    // 👉 THÊM
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     // getter / setter
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public long getPrice() {
         return price;
