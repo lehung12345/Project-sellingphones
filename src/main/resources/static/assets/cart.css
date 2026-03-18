@@ -1,0 +1,109 @@
+/* ===== RESET NHẸ ===== */
+body {
+    background-color: #f5f6fa;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ===== CARD ===== */
+.card {
+    border-radius: 14px;
+}
+
+.card-header h5 {
+    letter-spacing: 1px;
+}
+
+/* ===== TABLE ===== */
+.table thead th {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+/* ===== PRODUCT NAME ===== */
+.table tbody td:first-child {
+    max-width: 320px;
+}
+
+/* ===== QUANTITY BOX ===== */
+.quantity-box {
+    background: #f1f3f6;
+    border-radius: 20px;
+    padding: 4px 8px;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+    background-color: #212529;
+    color: #fff;
+}
+
+/* ===== PRICE ===== */
+.text-danger {
+    color: #e63946 !important;
+}
+
+/* ===== DELETE LINK ===== */
+a.text-danger.small {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+a.text-danger.small:hover {
+    text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.card-footer {
+    border-top: 1px solid #eee;
+}
+
+.card-footer .btn {
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+/* ===== EMPTY CART ===== */
+.table td.text-muted {
+    font-size: 16px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 16px;
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #666;
+    }
+}
